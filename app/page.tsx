@@ -1,6 +1,12 @@
 import React from "react";
 import Particles from "./components/particles";
 
+interface Dungeon {
+  keystone_run_id: number
+  dungeon: string
+  mythic_level: number
+}
+
 export default async function Home() {
   const data = await fetch('https://raider.io/api/v1/characters/profile?region=us&realm=tichondrius&name=pablojohn&fields=mythic_plus_weekly_highest_level_runs')
   const profile = await data.json()
@@ -29,7 +35,7 @@ export default async function Home() {
       <div className="my-16 text-center animate-fade-in">
         <h2 className="text-sm text-zinc-500 ">
           <ul className="flex items-center justify-center gap-4">
-            {weeklyDungeons.map((dungeon) => (
+            {weeklyDungeons.map((dungeon: Dungeon) => (
               <li key={dungeon.keystone_run_id}>{dungeon.dungeon} {dungeon.mythic_level}</li>
             ))}
           </ul>

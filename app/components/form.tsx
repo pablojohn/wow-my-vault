@@ -25,7 +25,7 @@ const FormComponent: React.FC<FormComponentProps> = ({ onSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="flex flex-col items-center space-y-4">
       <div>
         <label className="block text-white">Name</label>
         <input

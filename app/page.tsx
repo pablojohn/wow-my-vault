@@ -66,13 +66,15 @@ export default function Home() {
             <h1 className="py-3.5 px-0.5 z-10 text-3xl sm:text-4xl md:text-6xl lg:text-9xl text-transparent duration-1000 bg-white cursor-default text-edge-outline animate-title font-display whitespace-nowrap bg-clip-text">
               <div className="flex overflow-x-auto space-x-4 mt-8 sm:mt-0">
                 {slots.map((slot, index) => (
-                  <Card key={index} className="min-h-[200px] min-w-[200px] flex-shrink-0">
-                    <div className="flex flex-col items-center justify-center w-full h-full p-4 space-y-4">
-                      <h2 className="text-2xl font-bold text-white underline">Slot {index + 1}</h2>
-                      <span className="text-xl text-white">{slot.mythic_level}</span>
-                      <span className="text-xl text-white">{slot.reward_level}</span>
-                    </div>
-                  </Card>
+                  <div>
+                    <Card key={index} className="min-h-[200px] min-w-[200px] flex-shrink-0">
+                      <div className="flex flex-col items-center justify-center w-full h-full p-4 space-y-4">
+                        <h2 className="text-2xl font-bold text-white underline">Slot {index + 1}</h2>
+                        <span className="text-xl text-white">{slot.mythic_level}</span>
+                        <span className="text-xl text-white">{slot.reward_level}</span>
+                      </div>
+                    </Card>
+                  </div>
                 ))}
               </div>
             </h1>

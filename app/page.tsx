@@ -15,12 +15,15 @@ export default function Home() {
   const [weeklyDungeons, setWeeklyDungeons] = useState<Dungeon[]>([]);
   const [slots, setSlots] = useState<{ mythic_level: number, reward_level: number }[]>([]);
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleFormSubmit = async (name: string, realm: string) => {
     setFormSubmitted(false); // Reset formSubmitted to false to trigger animations
+    setError(null); // Reset error state
 
     const data = await fetch(`/api/fetchDungeons?name=${name}&realm=${realm}`);
     if (!data.ok) {
+      setError('Failed to fetch data');
       console.error('Failed to fetch data');
       return;
     }
@@ -61,7 +64,8 @@ export default function Home() {
       <div className="flex-grow flex flex-col items-center justify-center">
         <h1 className="text-3xl sm:text-4xl font-bold text-white mb-8">WoW My Vault</h1>
         <FormComponent onSubmit={handleFormSubmit} />
-        {formSubmitted && (
+        {error && <p className="text-red-500 bg-red-100 border border-red-400 p-4 rounded mb-4 mt-4">{error}</p>}
+        {formSubmitted && !error && (
           <>
             <h1 className="py-3.5 px-0.5 z-10 text-3xl sm:text-4xl md:text-6xl lg:text-9xl text-transparent duration-1000 bg-white cursor-default text-edge-outline animate-title font-display whitespace-nowrap bg-clip-text">
               <div className="flex overflow-x-auto space-x-4 mt-8 sm:mt-0">
